@@ -26,7 +26,8 @@ jobs:
         run: dotnet build --configuration Release
 
       - name: dotnet publish
-        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
+        run: dotnet publish SimpleApi/src/SimpleApi/SimpleApi.csproj -c Release -o website
+        #dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
@@ -54,4 +55,5 @@ jobs:
           app-name: 'fjoraapi'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_0E2943BC753C4EA0AF07D2E1BBD9F8FE }}
+          path: src/SimpleApi
           package: .

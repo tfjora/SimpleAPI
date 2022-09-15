@@ -38,7 +38,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     environment:
-      name: 'Production'
+      name: 'Dev'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
 
     steps:
@@ -52,7 +52,7 @@ jobs:
         uses: azure/webapps-deploy@v2
         with:
           app-name: 'fjoraapi'
-          slot-name: 'Production'
+          slot-name: 'Dev'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_0E2943BC753C4EA0AF07D2E1BBD9F8FE }}
           path: src/SimpleApi
           package: .
